@@ -8,7 +8,6 @@ import { useState } from 'react';
 
 const Counter = () => {
     const [count, setCount] = useState(0);
-
     const RemoveStar = () => {
         if (count > 0) { setCount(count - 1) };
     }
@@ -16,19 +15,18 @@ const Counter = () => {
         if (count < 5) { setCount(count + 1) };
     }
 
-    const StarDisplay = () => {
-        let numberOfStars = "";
-        for (let i = 0; i <= count.length; i++) {
-            numberOfStars = numberOfStars + "🌟";
-        }
-        return <p>{numberOfStars}</p>;
-    };
 
+    // const starSymbol = "🌟"
+    const StarDisplay = () => {
+        return Array.from({
+            length: count
+        }, () => "🌟")
+
+    };
 
 
     return (
         <div id="app-container">
-
             {/* header with logo and menu */}
             <header>
                 <div id="logo">
@@ -40,30 +38,25 @@ const Counter = () => {
                 <div class="menu">MENU</div>
             </header>
 
-
             {/* main adder section with buttons and number */}
             <div id="adder">
-                {/* button to remove stars */}
+                {/* button to remove */}
                 <button id="remove"
                     onClick={RemoveStar}>-</button>
-
                 {/* number */}
                 <div id="number-of-stars">
                     <h1>{count}</h1>
                 </div>
-
-                {/* button to add stars */}
+                {/* button to add */}
                 <button id="add"
                     onClick={AddStar}
                 >+</button>
             </div>
 
-
-            {/* // will need to map the stars state variable array and display them */}
+            {/* display the stars */}
             <div id="stars-display">
-                {StarDisplay}
+                <StarDisplay />
             </div>
-
 
 
 
